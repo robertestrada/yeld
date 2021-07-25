@@ -11,10 +11,10 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/biz/:alias" render={ () => <BusinessPage /> } />
-        <Route path="/search" render={ () => <Results /> } />
-        <Route path="/" exact render={ () => <LandingPage /> } />
-        <Route render={() => <NotFoundPage />} />
+        <Route path="/biz/:alias" component={ BusinessPage } />
+        <Route path="/search" component={ Results } />
+        <Route exact path="/" component={ LandingPage } />
+        <Route component={ NotFoundPage } />
       </Switch>
     </BrowserRouter>
   );
