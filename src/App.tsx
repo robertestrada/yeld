@@ -1,9 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import * as config from './config';
 
 function App() {
-
+  console.log("YELP_API_BASE_URL: ", config.YELP_API_BASE_URL);
+  console.log("YELP_BEARER_TOKEN: ", config.YELP_BEARER_TOKEN);
   return (
     <div className="App">
       <header className="App-header">
