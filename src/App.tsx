@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/biz/:alias" component={ BusinessPage } />
-        <Route path="/search" component={ Results } />
+        <Route exact path="/search" component={ Results } />
         <Route exact path="/" component={ LandingPage } />
         <Route component={ NotFoundPage } />
       </Switch>
