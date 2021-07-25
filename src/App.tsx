@@ -10,8 +10,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+        <p>YELP_API_BASE_URL:
+          <code>{config.YELP_API_BASE_URL}</code>
+        </p>
+        <p>YELP_BEARER_TOKEN:
+          <code>{config.YELP_BEARER_TOKEN}</code>
         </p>
         <a
           className="App-link"
