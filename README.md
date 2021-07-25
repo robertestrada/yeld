@@ -65,7 +65,7 @@ features:
 After downloading this repo, you must set up the front-end app.
 
 *.env Setup:*
-- In the top-level folder, you must set your YELP_API_KEY in a .env file in the top-level folder, which you can get from creating your own Yelp API account, and also join the developer beta for categories to work.
+- In the top-level folder, you must set your REACT_APP_YELP_API_KEY in a .env file in the top-level folder, which you can get from creating your own Yelp API account, and also join the developer beta for categories to work.
 
 ### **Front-end React App Setup**
 - Install dependencies by running ```npm install```.  Then, you can start the app with ```npm start```.  The front-end address is ```http://localhost:3000```.
@@ -75,6 +75,6 @@ After downloading this repo, you must set up the front-end app.
 - It is assumed for these isntructions you used the app name ```yeld```, though you will have to choose a different untaken name in heroku.
 - It is assumed your main branch in git is ```main```.
 - Then, under Settings/Buildpacks, click "Add buildpack" and enter ```https://buildpack-registry.s3.amazonaws.com/buildpacks/mars/create-react-app.tgz```, and save changes.  This provides a buildpack for react apps.
-- For the environment variables, set the YELP_API_KEY.
+- For the environment variables, set the REACT_APP_YELP_API_KEY.
 - Then, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line) in terminal if you do not already have it.  In terminal in the top most folder, run ```heroku login```, and then ```heroku git:remote -a yeld```, then run ```git push heroku main```
 - The website should be live once finished pushing to heroku.
