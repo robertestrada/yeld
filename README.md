@@ -1,113 +1,80 @@
 # Yeld
-Yeld, a [Yelp.com](https://yelp.com/) clone, is a front-end single-page web application where users can search for restaurants and other businesses, view and filter by reviews & ratings, and save products in a cart by type and quantity before ordering.
+Yeld, a [Yelp.com](https://yelp.com/) clone, is a front-end single-page web application where users can search for real restaurants and other businesses, browse real business reviews & ratings, and filter searches by criteria like category, price, rating, etc.
 
 Live Demo: [yeld.herokuapp.com](https://yeld.herokuapp.com/)
 <br />
 <br />
 
 ## Technologies
-* Frontend: React / Redux / JavaScript / CSS3 / HTML / Google Oauth2 / Google ReCAPTCHA / Webpack / NPM
-* Containerization: Docker
-* Hosting: Heroku / SSL / AWS S3 (images)
+* Frontend: React / TypeScript / Material-UI / Yelp-API/ CSS / HTML / NPM
+* Hosting: Heroku
 <br />
 <br />
 
 ## Features
-* Secure frontend to backend user authentication using Werkzeug
-* Dashboard displaying infinite feed of products available for purchase
-* Product search with auto-suggest/keyboard-navigable using product keywords
-* Product filtering by rating, price, and shipping speed using SQLAlchemy and Postgres trigrams
-* Shopping cart for gathering products for checkout with adjustable quantities/deletion and checkout.
-* Google invisible ReCAPTCHA & Secure Sockets Layer with HTTPS redirect to bolster user authentication and security
-* Developed randomized, infinitely scrolling, and dynamically-resizing image carousels using CSS and React functions to entice user login
+* Search for businesses using location and other criteria
+* Browse search results sorted by recommended, highest rating, or most reviews
+* Filter searches by price, rating, location, etc. for new results
+* View detailed business information to make a more informed decision
+* Browse user reviews for a business to determine value and choices
 <br />
 <br />
 
-## User Actions
-#### Authorization & Authentication
-![](https://github.com/robertestrada/rme_public/blob/master/whim/whim-dynamic-1.gif)
-![](https://github.com/robertestrada/rme_public/blob/master/whim/whim-signup-recaptcha-s-1.gif)
-<br />
-Auth features:
-- Users must sign up and login to use any of the apps features.  The user has the option of traditionally signing up or creating an account through Google Oauth2.  
-- There are 4 infinite scrolling arrays of random products next the login panel to appeal to the user signing up.  
-- When the user attempts to sign up and create an account, Google ReCAPTCHA runs invisibly to make sure the user behavior is legitimately human and prompts the user with an iframe from Google if more verification is necessary.
+### Homepage
+feature:
+- Once a user arrives at the homepage, a search field, Hot & New businesses section, and category section are available for user interaction.   
 <br />
 <br />
 
-### Dashboard & Feed
-![](https://github.com/robertestrada/rme_public/blob/master/whim/whim-scroll-1.gif)
-![](https://github.com/robertestrada/rme_public/blob/master/whim/whim-filter-1.gif)
-<br />
-Dashboard & Feed features:
-- Once a user logs in, they are immediately redirected to their dashboard, which shows a product feed, navbar, search bar, and sidecart if there are products in their cart. 
-- The feed shows a grid of products in an infinite scroll container that adjusts the amount of products on each row to the client's window size.  
-- The feed shows a feed filter and filtering tabs when a search is executed and displayed in the feed.
+### Searching for Business Information
+features:
+- For each product displayed in the feed, a REST Yelp API query is executed which produces all the relevant business data, from identifying data to associated ratings.
+- The search terms entered require a location and optional term such as vague or specific identifiers like name, category, or even nothing at all to return meaningful results.
+- Prior to submitting search terms, an autosuggestion in the form of a drop down list of possible search terms is generated as the user types to assist with faster searches and targeted recommendations.
 <br />
 <br />
 
-#### Fetching Product Information
-![](https://github.com/robertestrada/rme_public/blob/master/whim/whim-select-product-1.gif)
-<br />
-Fetching features:
-- For each product displayed in the feed, an SQLAlchemy query is executed on the backend which produces all the relevant product data, from S3 hosted images to descriptive information.  
-- A further more detailed query is made to display product information through a modal overlay when a product is clicked from the feed.
+### Navbar
+features:
+- A Navbar appears at the top of the search results screen and business page screen, which allows the same search functionality as described in the above feature section.
+
+### Search Results
+features:
+- Once a search is executed, the user is presented with a list of returned business search results that show the name, rating, price, address, picture, a snippet of the most recent review, and other relevant information.
+- Each result can be clicked on to redirect to the result's main page.
+- The search results can be sorted by recommended (best match), rating, or review count.
 <br />
 <br />
 
-#### Search
-![](https://github.com/robertestrada/rme_public/blob/master/whim/whim-search-1.gif)
-<br />
-Search features:
-- As soon as a user enters a single character into the search field at the top of the Dashboard, a dropdown list of 10 keywords that start with that character immediately displays ranked in order according to most commonly found in all products.  
-- Also, the input field initially shows the top keyword(s) as grayed out letters that complete the rest of the word.  As the user continues typing, the keywords delivered in the list readjust to keywords that start with the new, growing input search string.  
-- A keyword in the list can be selected by cursor or directional keys and tabbing, and set as the search term to find specific products.
+### Filter Search Results
+feature:
+- Once on a search results page, filtering by price, category, features, and distance is available to the left of the search results for quickly searching again with extra criteria.
 <br />
 <br />
 
-#### Cart
-![](https://github.com/robertestrada/rme_public/blob/master/whim/whim-checkout-1.gif)
-<br />
-Cart features:
-- A product may be added to the user's shopping cart based on inventory levels and user selected product options like quantity or type.  Items may be increased in quantity or removed.  
-- When the user is ready, the checkout button can be pressed to end the project's demo of the ordering process.
+### Business Page
+features:
+- When a user arrives on a selected business page from the search results, the business name, claimed status, rating, reviews count, price, open status, and hours of operation are displayed at the top, just below the navbar.
+- Behind the above data, 3 business photos are displayed as a background in a row
+- Below the above data, the location & hours, yelp business link, phone number, and address are displayed
+- 3 user reviews appear below the above data
 <br />
 <br />
 
 ## Installation
-After downloading this repo, you must setup the front-end & back-end apps, as well as deployment files.
-### Docker Setup
-- In the Dockerfile at the top-level folder, you must set the "REACT_APP_BASE_URL" to the domain you wish to use: i.e. ```https://whim-app.herokuapp.com```.
-
-### Back-end Setup
-The whim_server app backend uses Python, Flask, SQLAlchemy, Alembic, and PostgreSQL for routing, models, and database migrations.  In development, the back-end address is ```http://localhost:5000```.
-
-*Python Shell Setup:*
-- In the /whim_server folder, you can install the python pip dependencies with: ```pipenv install --python=python3```.
-- Once installed, you must enter the pipenv shell with ```pipenv shell```.  You can then start the backend with "flask run".
+After downloading this repo, you must set up the front-end app.
 
 *.env Setup:*
-- In the top-level folder, you must set your own key values in a .env file that follows the example of the .env.example file.  In particular, the following keys must be created by you: SECRET_KEY, DATABASE_URL, JWT_SECRET_KEY, RC_SITE_KEY, GOOGLE_API_KEY, GOOGLE_CLIENT_ID.  
-- This app uses Google Oauth2 and invisible ReCAPTCHA, which will need you to create accounts and keys for use in the .env file.
-
-*Database Setup:* 
-- This app uses PostgreSQL for the database, so you will need to create a database with name, username, and password that you then use to adjust the DATABASE_URL key's value.  
-- Also, this app requires installing trigram functionality in postgres.  Log in to postgres's interface in terminal and connect to the database you made with ```psql -U <DB_USERNAME>``` and then ```\c <DB_NAME>```.  
-- Install the extension with: ```CREATE EXTENSION pg_trgm;```.   Then, upgrade the database with the models/tables with ```pipenv run flask db upgrade```.
-- Then, to seed the database with the users, products, reviews, etc., run the following in the top most folder up a level: ```python database.py```.  This will take some time (~30 minutes) depending on your computer to create many tens of thousands of seeds.  
-- Also, to re-initialize and run a new migration later, use the following commands in this order in /whim_server: ```pipenv run flask db init```, ```pipenv run flask db migrate -m "create simple_people table"```, ```pipenv run flask db upgrade```.  To downgrade the db, run: ```pipenv run flask db downgrade```.
+- In the top-level folder, you must set your YELP_API_KEY in a .env file in the top-level folder, which you can get from creating your own Yelp API account, and also join the developer beta for categories to work.
 
 ### **Front-end React App Setup**
-- In the /client folder, install dependencies by running ```npm install --client```.  Then, you can start the client app with ```npm start```.  The front-end address is ```http://localhost:3000```.  
-- The front-end will fetch images from an AWS S3 bucket that have already been pulled and uploaded from real products on Wish.com.  There are 200 products in total, along with AI-generated fake user images and miscellaneous resource images.
+- Install dependencies by running ```npm install```.  Then, you can start the app with ```npm start```.  The front-end address is ```http://localhost:3000```.
 
-### **Heroku Deployment & Docker Setup**
-- First, create a new project in Heroku.  
-- Then, under Resources click "Find more add-ons" and add the add-on called "Heroku Postgres".  
-- Then, you need to add the trigram postgres extension to Heroku's postgres like you did for your local dev environment.  To do this, in terminal, login to Heroku with ```heroku pg:psql -a whim-app```, where "whim-app" is the name of your Heroku app.  Then, while noticing the command prompt changing to ```whim-app::DATABASE=>``` to show that you are in Heroku, use the command ```create extension pg_trgm;```, and then you will see the confirmation ```CREATE EXTENSION```.
-- For the environment variables, input the values consistent with what you used for the development.env file, except FLASK_ENV should be set to "production".  The "DATABASE_URL" key will be set automaticcally by heroku/postgres.  
-- Then, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line) in terminal.  In terminal in the top most folder, run ```heroku login```, and then log in to the heroku container registry ```heroku container:login```.  
-- Update the "REACT_APP_BASE_URL" variable in the Dockerfile if you have not already.  This should be the full URL of your react app: i.e. ```https://whim-app.herokuapp.com```.  
-- Push your docker container to heroku (this will build the dockerfile, and push) with ```heroku container:push web -a whim-app```, then release your docker container to heroku with ```heroku container:release web -a whim-app```.  
-- Finally, set up your database with ```heroku run python -m database -a whim-app``` which will take at least as long as it did to seed (~30min) for your local development postgres.
-- Note that SSL is set up through Heroku's included SSL feature as a bonus.
+### **Heroku Deployment**
+- First, create a new app in Heroku.
+- It is assumed for these isntructions you used the app name ```yeld```, though you will have to choose a different untaken name in heroku.
+- It is assumed your main branch in git is ```main```.
+- Then, under Settings/Buildpacks, click "Add buildpack" and enter ```https://buildpack-registry.s3.amazonaws.com/buildpacks/mars/create-react-app.tgz```, and save changes.  This provides a buildpack for react apps.
+- For the environment variables, set the YELP_API_KEY.
+- Then, install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line) in terminal if you do not already have it.  In terminal in the top most folder, run ```heroku login```, and then ```heroku git:remote -a yeld```, then run ```git push heroku main```
+- The website should be live once finished pushing to heroku.
