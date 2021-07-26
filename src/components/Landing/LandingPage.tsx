@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AutoComplete from '@material-ui/lab/AutoComplete';
 import yeldData from '../../data/data';
 
 const LandingPage = () => {
@@ -8,6 +9,7 @@ const LandingPage = () => {
   const bannerId = bannerData.banners[randomIdx].id;
   const randomBannerUrl = `${baseUrl}${bannerId}${bannerData.bannerExtension}`;
 
+  
 
 
   return (
