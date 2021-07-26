@@ -1,4 +1,4 @@
-export const yeldData = {
+const yeldData = {
   homepage: {
     searchBar: {
       termLabel: "Find",
@@ -40,3 +40,5 @@ export const yeldData = {
     },
   },
 }
+
+export default yeldData;
