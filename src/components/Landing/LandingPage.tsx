@@ -2,24 +2,17 @@ import React, { useState, useEffect } from 'react';
 import yeldData from '../../data/data';
 
 const LandingPage = () => {
-  const [bannerUrl, setBannerUrl] = useState('');
+  const bannerData = yeldData.homepage.bannerData;
+  const baseUrl = bannerData.bannerBaseUrl;
+  const randomIdx = Math.floor(Math.random() * 8);
+  const bannerId = bannerData.banners[randomIdx].id;
+  const randomBannerUrl = `${baseUrl}${bannerId}${bannerData.bannerExtension}`;
 
-  const getRandomBannerUrl = async () => {
-    const bannerData = yeldData.homepage.bannerData;
-    const baseUrl = await bannerData.bannerBaseUrl;
-    const randomId = Math.floor(Math.random() * 8) + 1;
-    const bannerId = await bannerData.banners[randomId].id;
-    const randomBannerUrl = `${baseUrl}${bannerId}${bannerData.bannerExtension}`;
-    await setBannerUrl(randomBannerUrl);
-  }
 
-  useEffect(() => {
-    getRandomBannerUrl();
-  }, []);
 
   return (
     <div className="LandingPage">
-      <img src={bannerUrl} alt=''/>
+      <img src={randomBannerUrl} alt=''/>
     </div>
   )
 }
