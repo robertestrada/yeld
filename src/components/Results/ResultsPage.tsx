@@ -1,10 +1,12 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-type TParams = {
-  query: string;
-}
+
+type TParams = { 
+  location: string;
+ }
 
 const ResultsPage = ({ location }: RouteComponentProps<TParams>) => {
+
   return (<div>Results Page
     <p>
       <strong>Location Props: </strong>
