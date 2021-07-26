@@ -1,0 +1,13 @@
+.SearchBar {
+  display: flex;
+  flex-direction: row;
+  margin: 40px 20px;
+}
+
+.SearchBar__term {
+  border: 1px solid grey;
+}
+
+.SearchBar__location {
+  flex: auto;
+}

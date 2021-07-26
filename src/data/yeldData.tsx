@@ -1,9 +1,18 @@
 const yeldData = {
-  homepage: {
+  landingPage: {
     searchBar: {
       termLabel: "Find",
-      searchBarPlaceholder: "claw salons, toilet engineers, carryout...",
+      termPlaceholder: "claw salons, toilet engineers, carryout...",
+      locationPlaceholder: "address, neighborhood, city, state or zip",
       locationLabel: "Near",
+      initialSuggestions: [
+        "Restaurants",
+        "Delivery",
+        "Takeout",
+        "Accountants",
+        "Plumbers",
+        "Auto Repair",
+      ],
     },
     bannerData: {
       creditText: "Captured by",

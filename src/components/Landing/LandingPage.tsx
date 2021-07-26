@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import AutoComplete from '@material-ui/lab/AutoComplete';
-import yeldData from '../../data/data';
+import React from 'react';
+import SearchBar from './SearchBar/SearchBar';
+import yeldData from '../../data/yeldData';
 
 const LandingPage = () => {
-  const bannerData = yeldData.homepage.bannerData;
-  const baseUrl = bannerData.bannerBaseUrl;
+
+  const { landingPage: { bannerData } } = yeldData;
   const randomIdx = Math.floor(Math.random() * 8);
   const bannerId = bannerData.banners[randomIdx].id;
-  const randomBannerUrl = `${baseUrl}${bannerId}${bannerData.bannerExtension}`;
-
-  
-
+  const randomBannerUrl = `${bannerData.bannerBaseUrl}${bannerId}${bannerData.bannerExtension}`;
 
   return (
     <div className="LandingPage">
+      <SearchBar />
       <img src={randomBannerUrl} alt=''/>
     </div>
   )
