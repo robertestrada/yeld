@@ -5,10 +5,10 @@ import yeldData from '../../../data/yeldData';
 import '../../../styles/SearchBar.css';
 
 const SearchBar = () => {
-  // const [suggestions, setSuggestions] = useState();
   const { landingPage: { searchBar } } = yeldData;
-  
-  
+  const [term, setTerm] = useState('');
+
+  console.log(term);
   return (
     <div className="SearchBar">
       <AutoComplete
@@ -17,10 +17,12 @@ const SearchBar = () => {
         freeSolo={true}
         style={{ borderRight: "1px  solid grey", marginRight: "10px" }}
         fullWidth={true}
+        onInputChange={(e, value) => setTerm(value)}
+        // onChange={onTermChange}
         renderInput={(params) => <TextField {...params} 
                                     label={searchBar.termLabel} 
                                     placeholder={searchBar.termPlaceholder} 
-                                    InputProps={{disableUnderline: true}}
+                                    InputProps={{...params.InputProps, disableUnderline: true}}
                                   />}
       />
       <TextField 
