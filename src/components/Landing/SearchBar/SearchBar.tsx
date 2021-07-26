@@ -7,8 +7,14 @@ import '../../../styles/SearchBar.css';
 const SearchBar = () => {
   const { landingPage: { searchBar } } = yeldData;
   const [term, setTerm] = useState('');
+  const [location, setLocation] = useState('');
 
-  console.log(term);
+  useEffect(()=> {
+
+  },[term]);
+
+  console.log("term: ", term);
+  console.log("location: ", location);
   return (
     <div className="SearchBar">
       <AutoComplete
@@ -32,6 +38,7 @@ const SearchBar = () => {
         style={{ alignItems: "center"}}
         inputProps={{ style: { display: 'flex', alignItems: 'center' } }}
         InputProps={{ disableUnderline: true }}
+        onChange={e => setLocation(e.target.value)}
       />
     </div>
   )
