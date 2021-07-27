@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AutoComplete from '@material-ui/lab/AutoComplete';
-import TextField from '@material-ui/core/TextField';
+import AutoComplete from '@material-ui/lab/Autocomplete/Autocomplete';
+import TextField from '@material-ui/core/TextField/TextField';
 import yeldData from '../../../data/yeldData';
 import { getAutoSuggestions } from '../../utilities/yelpAPI'
 import '../../../styles/SearchBar.css';
