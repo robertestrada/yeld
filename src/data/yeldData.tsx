@@ -1,9 +1,19 @@
-export const yeldData = {
-  homepage: {
+const yeldData = {
+  landingPage: {
+    logoUrl: "https://yeld.s3.us-west-2.amazonaws.com/yeld_blk-01.png",
     searchBar: {
       termLabel: "Find",
-      searchBarPlaceholder: "claw salons, toilet engineers, carryout...",
+      termPlaceholder: "claw salons, toilet engineers, carryout...",
+      locationPlaceholder: "address, neighborhood, city, state or zip",
       locationLabel: "Near",
+      initialSuggestions: [
+        "Restaurants",
+        "Delivery",
+        "Takeout",
+        "Accountants",
+        "Plumbers",
+        "Auto Repair",
+      ],
     },
     bannerData: {
       creditText: "Captured by",
@@ -28,15 +38,17 @@ export const yeldData = {
       categoryBaseUrl: "https://yeld.s3.us-west-2.amazonaws.com/homepage/categories/",
       categoryExtension: '.png',
       categories: [
-        { label: "Restaurants", id: "1"},
-        { label: "Shopping", id: "2"},
-        { label: "Nightlife", id: "3"},
-        { label: "Active Life", id: "4" },
-        { label: "Beauty & Spas", id: "5" },
-        { label: "Automotive", id: "6" },
-        { label: "Home Services", id: "7" },
-        { label: "More Categories", id: "8" },
+        { label: "Restaurants", id: 1},
+        { label: "Shopping", id: 2},
+        { label: "Nightlife", id: 3},
+        { label: "Active Life", id: 4 },
+        { label: "Beauty & Spas", id: 5 },
+        { label: "Automotive", id: 6 },
+        { label: "Home Services", id: 7 },
+        { label: "More Categories", id: 8 },
       ]
     },
   },
 }
+
+export default yeldData;
