@@ -1,5 +1,6 @@
 const yeldData = {
   landingPage: {
+    logoUrl: "https://yeld.s3.us-west-2.amazonaws.com/yeld_blk-01.png",
     searchBar: {
       termLabel: "Find",
       termPlaceholder: "claw salons, toilet engineers, carryout...",
