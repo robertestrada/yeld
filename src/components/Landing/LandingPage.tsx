@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar/SearchBar';
+import HotAndNew from '../HotAndNew/HotAndNew';
 import '../../styles/LandingPage.css';
 import yeldData from '../../data/yeldData';
 
@@ -28,6 +29,9 @@ const LandingPage = () => {
               <strong>{bannerSelection.title}</strong>
             <div className="LandingPage__banner-owner">{bannerData.creditText} <strong>{bannerSelection.owner}</strong></div>
             </div>
+          </div>
+          <div className="LandingPage__hot-and-new">
+            <HotAndNew />
           </div>
       </div>
     </div>
