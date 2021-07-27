@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar/SearchBar';
-import HotAndNew from '../HotAndNew/HotAndNew';
+import HotAndNew from './HotAndNew/HotAndNew';
+import Categories from './Categories/Categories';
 import '../../styles/LandingPage.css';
 import yeldData from '../../data/yeldData';
 
@@ -32,6 +33,9 @@ const LandingPage = () => {
           </div>
           <div className="LandingPage__hot-and-new">
             <HotAndNew />
+          </div>
+          <div className="LandingPage__categories">
+            <Categories />
           </div>
       </div>
     </div>
