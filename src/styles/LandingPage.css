@@ -34,3 +34,21 @@
   height: 100%;
   text-indent: -1000em;
 }
+
+.LandingPage__search {
+  padding-bottom: 200px;
+}
+
+.LandingPage__banner-info-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.LandingPage__banner-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+

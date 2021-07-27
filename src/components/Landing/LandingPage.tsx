@@ -7,8 +7,10 @@ const LandingPage = () => {
   const logoUrl = yeldData.landingPage.logoUrl;
   const { landingPage: { bannerData } } = yeldData;
   const randomIdx = Math.floor(Math.random() * 8);
-  const bannerId = bannerData.banners[randomIdx].id;
+  const bannerSelection = bannerData.banners[randomIdx];
+  const bannerId = bannerSelection.id;
   const randomBannerUrl = `${bannerData.bannerBaseUrl}${bannerId}${bannerData.bannerExtension}`;
+
 
   return (
     <div className="LandingPage" style={{ backgroundImage: `url(${randomBannerUrl})` }}>
@@ -18,7 +20,15 @@ const LandingPage = () => {
               <a href="/">Yeld</a>
             </h1>
           </div>
-          <SearchBar />
+          <div className="LandingPage__search">
+            <SearchBar />
+          </div>
+          <div className="LandingPage__banner-info-container">
+            <div className="LandingPage__banner-info">
+              <strong>{bannerSelection.title}</strong>
+            <div className="LandingPage__banner-owner">{bannerData.creditText} <strong>{bannerSelection.owner}</strong></div>
+            </div>
+          </div>
       </div>
     </div>
   )
