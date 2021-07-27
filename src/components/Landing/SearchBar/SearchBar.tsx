@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import AutoComplete from '@material-ui/lab/AutoComplete';
 import TextField from '@material-ui/core/TextField';
 import yeldData from '../../../data/yeldData';
+import { getAutoSuggestions } from '../../utilities/yelpAPI'
 import '../../../styles/SearchBar.css';
 
 const SearchBar = () => {
   const { landingPage: { searchBar } } = yeldData;
   const [term, setTerm] = useState('');
   const [location, setLocation] = useState('');
+  const [suggestions, setSuggestions] = useState();
 
   useEffect(()=> {
-
+    getAutoSuggestions(`?text=${term}`)
   },[term]);
 
   console.log("term: ", term);
