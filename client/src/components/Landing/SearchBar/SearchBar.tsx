@@ -32,8 +32,7 @@ const SearchBar = () => {
       <AutoComplete
         options={suggestions}
         getOptionLabel={(option) => option}
-        // freeSolo={true}
-        style={{ borderRight: "1px  solid #ddd", marginRight: "10px" }}
+        // style={{ borderRight: "1px  solid #ddd", marginRight: "10px" }}
         fullWidth={true}
         onInputChange={(e, value) => setTerm(value)}
         // onChange={onTermChange}

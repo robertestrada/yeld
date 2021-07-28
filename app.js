@@ -20,8 +20,6 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use("/yelpAPI", yelpAPIRouter);
 app.get('*', (req, res) => {
   const filePath = 'client/build/index.html';
-  // const resolvedPath = path.resolve(filePath);
-  // console.log(resolvedPath);
   res.sendFile(path.join(__dirname, filePath));
 });
 

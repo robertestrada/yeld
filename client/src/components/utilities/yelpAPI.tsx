@@ -2,7 +2,7 @@ import React from 'react';
 import { baseUrl } from '../utilities/config';
 
 export const getAutoSuggestions = async (params: string) => {
-  const response = await fetch(`${baseUrl}/yelpAPI${params}`);
+  const response = await fetch(`/yelpAPI${params}`);
   if (response.ok){
     const result = await response.json();
     console.log("result: ", result);
