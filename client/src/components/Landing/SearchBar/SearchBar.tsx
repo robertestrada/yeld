@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AutoComplete from '@material-ui/lab/Autocomplete/Autocomplete';
 import TextField from '@material-ui/core/TextField/TextField';
 import yeldData from '../../../data/yeldData';
-import { getAutoSuggestions } from '../../utilities/yelpAPI'
+import { getAutoSuggestions, getBusinesses } from '../../utilities/yelpAPI';
 import '../../../styles/SearchBar.css';
 
 const SearchBar = () => {
@@ -10,6 +10,13 @@ const SearchBar = () => {
   const [term, setTerm] = useState('');
   const [location, setLocation] = useState('');
   const [suggestions, setSuggestions] = useState(searchBar.initialSuggestions);
+
+  const handleEnter = async (key: string) => {
+    if (key === 'Enter' && location !== '') {
+      const result = await getBusinesses(location, term);
+      console.log(result);
+    }
+  }
 
   useEffect(()=> {
     const termTimer = setTimeout(() => {
@@ -21,7 +28,6 @@ const SearchBar = () => {
           }
         })
       } else {
-        console.log("hit: ", term);
         setSuggestions(searchBar.initialSuggestions);
       }
     }, 250);
@@ -45,12 +51,14 @@ const SearchBar = () => {
         onInputChange={(e, value) => setTerm(value)}
         // onChange={onTermChange}
         renderInput={(params) => <TextField {...params} 
+                                    onKeyDown={e => handleEnter(e.key)}
                                     label={searchBar.termLabel} 
                                     placeholder={searchBar.termPlaceholder} 
                                     InputProps={{...params.InputProps, disableUnderline: true}}
                                   />}
       />
       <TextField 
+        onKeyDown={e => handleEnter(e.key)}
         fullWidth={true}
         label={searchBar.locationLabel} 
         placeholder={searchBar.locationPlaceholder} 
