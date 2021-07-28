@@ -1,6 +1,3 @@
-import React from 'react';
-import { baseUrl } from '../utilities/config';
-
 export const getAutoSuggestions = async (params: string) => {
   const response = await fetch(`/yelpAPI/autocomplete?text=${params}`);
   if (response.ok){
