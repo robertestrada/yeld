@@ -7,7 +7,7 @@ import '../../styles/LandingPage.css';
 import yeldData from '../../data/yeldData';
 
 const LandingPage = () => {
-  const [userLocation, setUserLocation] = useState<null | string>(null);
+  const [userLocation, setUserLocation] = useState('');
   const logoUrl = yeldData.landingPage.logoUrl;
   const { landingPage: { bannerData } } = yeldData;
   const randomIdx = Math.floor(Math.random() * 8);
@@ -24,7 +24,7 @@ const LandingPage = () => {
         }
       })
   }, []);
-  console.log(userLocation);
+
   return (
     <div className="LandingPage" style={{ backgroundImage: `url(${randomBannerUrl})` }}>
       <div className="LandingPage__content">
@@ -34,7 +34,7 @@ const LandingPage = () => {
             </h1>
           </div>
           <div className="LandingPage__search">
-            <SearchBar />
+            <SearchBar userLocation={ userLocation } />
           </div>
           <div className="LandingPage__banner-info-container">
             <div className="LandingPage__banner-info">

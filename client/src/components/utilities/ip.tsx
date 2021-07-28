@@ -4,7 +4,6 @@ export const getIP = async () => {
   const response = await fetch('https://geolocation-db.com/json/');
   if (response.ok) {
     const result = await response.json();
-    // console.log(result);
     const stateAbbr = states.abbr(result.state);
     return { state: stateAbbr, city: result.city };
   } else {

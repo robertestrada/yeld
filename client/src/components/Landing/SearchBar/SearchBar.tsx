@@ -5,34 +5,22 @@ import yeldData from '../../../data/yeldData';
 import { getAutoSuggestions, getBusinesses } from '../../utilities/yelpAPI';
 import '../../../styles/SearchBar.css';
 
-const SearchBar = () => {
+const SearchBar = ({ userLocation }: { userLocation: string }) => {
   const { landingPage: { searchBar } } = yeldData;
   const [term, setTerm] = useState('');
   const [location, setLocation] = useState('');
   const [suggestions, setSuggestions] = useState(searchBar.initialSuggestions);
   
   const handleEnter = async (key: string) => {
-    if (key === 'Enter' && location !== '') {
+    if (key === 'Enter') {
       const result = await getBusinesses(location, term);
       console.log(result);
     }
   }
 
-  // useEffect(() => {
-  //   const termTimer = setTimeout(() => {
-  //     if (location !== '') {
-  //       getAutoSuggestions(term)
-  //         .then((res) => {
-  //           if (Array.isArray(res) && location !== '') {
-  //             setSuggestions(res);
-  //           }
-  //         })
-  //     } else {
-  //       setSuggestions(searchBar.initialSuggestions);
-  //     }
-  //   }, 250);
-  //   return () => clearTimeout(termTimer);
-  // }, [location]);
+  useEffect(() => {
+    setLocation(userLocation);
+  }, [userLocation]);
 
   useEffect(()=> {
     const termTimer = setTimeout(() => {
@@ -56,6 +44,7 @@ const SearchBar = () => {
   return (
     <div className="SearchBar">
       <AutoComplete
+        id='term-field'
         filterOptions={(options, state) => options}
         options={suggestions}
         freeSolo={true}
@@ -74,6 +63,7 @@ const SearchBar = () => {
                                   />}
       />
       <TextField 
+        value={location}
         onKeyDown={e => handleEnter(e.key)}
         fullWidth={true}
         label={searchBar.locationLabel} 
