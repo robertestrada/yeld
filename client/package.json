@@ -1,8 +1,8 @@
 {
-  "name": "yeld",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://yeld.herokuapp.com/",
+  "homepage": ".",
   "proxy": "http://localhost:5000",
   "dependencies": {
     "@fontsource/roboto": "^4.5.0",
