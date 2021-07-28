@@ -9,20 +9,30 @@ const SearchBar = () => {
   const { landingPage: { searchBar } } = yeldData;
   const [term, setTerm] = useState('');
   const [location, setLocation] = useState('');
-  const [suggestions, setSuggestions] = useState();
+  const [suggestions, setSuggestions] = useState(searchBar.initialSuggestions);
 
   useEffect(()=> {
-    getAutoSuggestions(`?text=${term}`)
+    if (term.length > 0) {
+      getAutoSuggestions(`?text=${term}`)
+        .then((res) => {
+          if (Array.isArray(res)) {
+            setSuggestions(res);
+          }
+        })
+    } else {
+      setSuggestions(searchBar.initialSuggestions);
+    }
   },[term]);
 
   console.log("term: ", term);
   console.log("location: ", location);
+  console.log("suggestions: ", suggestions);
   return (
     <div className="SearchBar">
       <AutoComplete
-        options={searchBar.initialSuggestions}
+        options={suggestions}
         getOptionLabel={(option) => option}
-        freeSolo={true}
+        // freeSolo={true}
         style={{ borderRight: "1px  solid #ddd", marginRight: "10px" }}
         fullWidth={true}
         onInputChange={(e, value) => setTerm(value)}
