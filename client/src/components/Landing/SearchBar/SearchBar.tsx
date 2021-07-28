@@ -12,7 +12,7 @@ const SearchBar = () => {
   const [suggestions, setSuggestions] = useState(searchBar.initialSuggestions);
 
   useEffect(()=> {
-    if (term.length > 0) {
+    if (term !== '') {
       getAutoSuggestions(`?text=${term}`)
         .then((res) => {
           if (Array.isArray(res)) {
