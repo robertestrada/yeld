@@ -12,7 +12,7 @@ export const getAutoSuggestions = async (params: string) => {
     const terms = result.terms.map((category: { text: string }) => {
       return category.text;
     })
-    const suggestions = [...categories, ...terms];
+    const suggestions = [...terms, ...categories];
     console.log("suggestions: ", suggestions);
     return suggestions;
   }
