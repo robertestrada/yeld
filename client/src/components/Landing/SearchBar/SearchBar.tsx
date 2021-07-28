@@ -12,16 +12,20 @@ const SearchBar = () => {
   const [suggestions, setSuggestions] = useState(searchBar.initialSuggestions);
 
   useEffect(()=> {
-    if (term !== '') {
-      getAutoSuggestions(`?text=${term}`)
+    const termTimer = setTimeout(() => {
+      if (term !== '') {
+        getAutoSuggestions(term)
         .then((res) => {
-          if (Array.isArray(res)) {
+          if (Array.isArray(res) && term !== '') {
             setSuggestions(res);
           }
         })
-    } else {
-      setSuggestions(searchBar.initialSuggestions);
-    }
+      } else {
+        console.log("hit: ", term);
+        setSuggestions(searchBar.initialSuggestions);
+      }
+    }, 250);
+    return () => clearTimeout(termTimer);
   },[term]);
 
   console.log("term: ", term);
@@ -30,7 +34,11 @@ const SearchBar = () => {
   return (
     <div className="SearchBar">
       <AutoComplete
+        filterOptions={(options, state) => options}
         options={suggestions}
+        freeSolo={true}
+        loading={true}
+        loadingText={'Yelding...'}
         getOptionLabel={(option) => option}
         // style={{ borderRight: "1px  solid #ddd", marginRight: "10px" }}
         fullWidth={true}
