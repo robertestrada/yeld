@@ -9,7 +9,7 @@ const Results = ({ results }: { results: ResultType[] }) => {
   return (
     <div className="Results">
       { results !== [] 
-      ? results.map((result: ResultType, idx: number) => <Result key={idx} result={result}/>)
+      ? results.map((result: ResultType, idx: number) => <Result key={idx} number={idx} result={result}/>)
       : null
       }
     </div>
