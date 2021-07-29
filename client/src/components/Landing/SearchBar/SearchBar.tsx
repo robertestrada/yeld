@@ -18,6 +18,13 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
     }
   }
 
+  const handleLocationSelection = (loc: string | null) => {
+    console.log(loc);
+    if (loc === searchBar.locationCurrentText) {
+      setLocation(userLocation);
+    }
+  }
+
   useEffect(() => {
     setLocation(userLocation);
   }, [userLocation]);
@@ -51,27 +58,37 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
         loading={true}
         loadingText={'Yelding...'}
         getOptionLabel={(option) => option}
-        // style={{ borderRight: "1px  solid #ddd", marginRight: "10px" }}
+        style={{ borderRight: "1px  solid #ddd", marginRight: "10px" }}
         fullWidth={true}
         onInputChange={(e, value) => setTerm(value)}
         // onChange={onTermChange}
-        renderInput={(params) => <TextField {...params} 
-                                    onKeyDown={e => handleEnter(e.key)}
-                                    label={searchBar.termLabel} 
-                                    placeholder={searchBar.termPlaceholder} 
-                                    InputProps={{...params.InputProps, disableUnderline: true}}
-                                  />}
+        renderInput={(params) => <TextField 
+          {...params} 
+          onKeyDown={e => handleEnter(e.key)}
+          label={searchBar.termLabel} 
+          placeholder={searchBar.termPlaceholder} 
+          InputProps={{...params.InputProps, disableUnderline: true}}
+        />}
       />
-      <TextField 
+      <AutoComplete
+        id='location-field'
         value={location}
-        onKeyDown={e => handleEnter(e.key)}
+        filterOptions={(options, state) => options}
+        options={[searchBar.locationCurrentText]}
+        freeSolo={true}
+        loading={true}
+        loadingText={'Yelding...'}
+        getOptionLabel={(option) => option}
         fullWidth={true}
-        label={searchBar.locationLabel} 
-        placeholder={searchBar.locationPlaceholder} 
-        style={{ alignItems: "center"}}
-        inputProps={{ style: { display: 'flex', alignItems: 'center' } }}
-        InputProps={{ disableUnderline: true }}
-        onChange={e => setLocation(e.target.value)}
+        onInputChange={(e, value) => setLocation(value)}
+        onChange={(e, value) => handleLocationSelection(value)}
+        renderInput={(params) => <TextField 
+          {...params}
+          onKeyDown={e => handleEnter(e.key)}
+          label={searchBar.locationLabel}
+          placeholder={searchBar.locationPlaceholder}
+          InputProps={{ ...params.InputProps, disableUnderline: true }}
+        />}
       />
     </div>
   )
