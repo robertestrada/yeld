@@ -1,0 +1,5 @@
+.ResultsPage__results {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

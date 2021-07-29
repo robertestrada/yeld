@@ -6,6 +6,7 @@ import Results from './ResultsComponents/Results'
 import NavBar from '../NavBar/Navbar';
 import { getIP } from '../../utilities/ip';
 import { ResultType, TParams } from 'myTypes';
+import '../../styles/ResultsPage.css';
 
 
 const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) => {
@@ -70,7 +71,9 @@ const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) 
         setSearchTerm={setSearchTerm}
         setLoadResults={setLoadResults}
       />
-      <Results results={results} />
+      <div className="ResultsPage__results">
+        <Results results={results} />
+      </div>
     </div>
   )
 }

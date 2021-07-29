@@ -1,4 +1,5 @@
 // import { useState, useEffect } from 'react';
+import Result from './Result';
 import { ResultType } from 'myTypes';
 import '../../../styles/Results.css';
 
@@ -7,9 +8,8 @@ const Results = ({ results }: { results: ResultType[] }) => {
   console.log(results);
   return (
     <div className="Results">
-      Results
       { results !== [] 
-      ? results.map((result: ResultType, idx: number) => <div key={idx}>{result.name}</div>)
+      ? results.map((result: ResultType, idx: number) => <Result key={idx} result={result}/>)
       : null
       }
     </div>
