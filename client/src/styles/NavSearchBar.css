@@ -1,0 +1,7 @@
+.NavSearchBar {
+  display: flex;
+  background-color: white;
+  border-radius: 5px;
+  padding-left: 10px;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.15);
+}

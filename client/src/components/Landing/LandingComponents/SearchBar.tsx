@@ -2,19 +2,11 @@ import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import AutoComplete from '@material-ui/lab/Autocomplete/Autocomplete';
 import TextField from '@material-ui/core/TextField/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import { useStyles } from '../../../utilities/materialUI';
 import yeldData from '../../../data/yeldData';
-import { getAutoSuggestions, getBusinesses } from '../../utilities/yelpAPI';
+import { getAutoSuggestions } from '../../../utilities/yelpAPI';
 import '../../../styles/SearchBar.css';
 
-const useStyles = makeStyles({
-  paper: {
-    transform: 'translateY(-4px)',
-    borderTopLeftRadius: '0px',
-    borderTopRightRadius: '0px',
-    width: "100%",
-  }
-});
 
 const SearchBar = ({ userLocation }: { userLocation: string }) => {
   const history = useHistory();
@@ -24,19 +16,30 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
   const [suggestions, setSuggestions] = useState(searchBar.initialSuggestions);
   const classes = useStyles();
 
-
+  // Redirect to the results page when the user hits enter
   const handleEnter = async (key: string) => {
     if (key === 'Enter') {
-      const result = await getBusinesses(location, term);
+      const termParam = term !== '' ? `&term=${term}` : '';
+      if (location !== '') {
+        history.push(`/search?location=${location}${termParam}`);
+      } else {
+        history.push(`/search?location=${userLocation}${termParam}`);
+      }
     }
   }
 
+  // Redirect to results page when a term selection is made from the search field
   const handleTermSelection = (termStr: string | null) => {
     if (termStr !== null) {
-      history.push(`/search?location=${location}&term=${termStr}`);
+      if (location !== '') {
+        history.push(`/search?location=${location}&term=${termStr}`);
+      } else {
+        history.push(`/search?location=${userLocation}&term=${termStr}`);
+      }
     }
   }
 
+  // Redirect to results page when a location selection is made from the search field
   const handleLocationSelection = (loc: string | null) => {
     if (loc === searchBar.locationCurrentText && term !== '') {
       history.push(`/search?location=${userLocation}&term=${term}`);
@@ -44,11 +47,14 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
       setLocation(userLocation);
     }
   }
-
+  
+  // Load up the city location of the user when the IP is fetched initially
   useEffect(() => {
     setLocation(userLocation);
   }, [userLocation]);
 
+
+  // Account for fast user typing to delay too many fetches
   useEffect(()=> {
     const termTimer = setTimeout(() => {
       if (term !== '') {

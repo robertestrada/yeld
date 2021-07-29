@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-import SearchBar from './SearchBar/SearchBar';
-import HotAndNew from './HotAndNew/HotAndNew';
-import Categories from './Categories/Categories';
-import { getIP } from '../utilities/ip';
+import SearchBar from './LandingComponents/SearchBar';
+import { getIP } from '../../utilities/ip';
 import '../../styles/LandingPage.css';
 import yeldData from '../../data/yeldData';
 
@@ -10,12 +8,14 @@ const LandingPage = () => {
   const [userLocation, setUserLocation] = useState('');
   const logoUrl = yeldData.landingPage.logoUrl;
   const { landingPage: { bannerData } } = yeldData;
+
+  // Switch banners randomly on each window reload
   const randomIdx = Math.floor(Math.random() * 8);
   const bannerSelection = bannerData.banners[randomIdx];
   const bannerId = bannerSelection.id;
   const randomBannerUrl = `${bannerData.bannerBaseUrl}${bannerId}${bannerData.bannerExtension}`;
 
-
+  // Get user's location and store it
   useEffect(() => {
     getIP()
       .then(res => {
@@ -41,12 +41,6 @@ const LandingPage = () => {
               <strong>{bannerSelection.title}</strong>
             <div className="LandingPage__banner-owner">{bannerData.creditText} <strong>{bannerSelection.owner}</strong></div>
             </div>
-          </div>
-          <div className="LandingPage__hot-and-new">
-            <HotAndNew />
-          </div>
-          <div className="LandingPage__categories">
-            <Categories />
           </div>
       </div>
     </div>
