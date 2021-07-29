@@ -5,7 +5,7 @@ import '../../../styles/Results.css';
 
 
 const Results = ({ results }: { results: ResultType[] }) => {
-  console.log(results);
+
   return (
     <div className="Results">
       { results !== [] 

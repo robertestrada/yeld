@@ -46,7 +46,6 @@ const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) 
   }, [location, term]);
 
   useEffect(() => {
-    console.log("loadResults: ", loadResults);
     if (loadResults) {
       setLoadResults(false);
       getBusinesses(searchLocation, searchTerm)

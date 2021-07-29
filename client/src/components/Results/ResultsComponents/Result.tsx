@@ -1,11 +1,8 @@
-// import { useState, useEffect } from 'react';
 import { ResultType } from 'myTypes';
 import '../../../styles/Result.css';
-import yeldData from '../../../data/yeldData';
 
 
 const Result = ({ result, number }: { result: ResultType, number: number }) => {
-
 
   return (
     <div className="Result">
