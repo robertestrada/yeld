@@ -6,6 +6,7 @@ const yeldData = {
       termPlaceholder: "claw salons, toilet engineers, carryout...",
       locationPlaceholder: "address, neighborhood, city, state or zip",
       locationLabel: "Near",
+      locationCurrentText: "Current Location",
       initialSuggestions: [
         "Restaurants",
         "Delivery",

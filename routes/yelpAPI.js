@@ -5,10 +5,28 @@ const YELP_BEARER_TOKEN = process.env.YELP_API_KEY;
 const client = yelp.client(YELP_BEARER_TOKEN);
 
 
-router.get('/', async function(req, res) {
+router.get('/autocomplete', async function(req, res) {
     if (req.query.text.length > 0) {
         try {
             const response = await client.autocomplete({ text: req.query.text });
+            return await res.send(response.jsonBody);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+});
+
+router.get('/search', async function (req, res) {
+    if (req.query.location.length > 0) {
+        let term = '';
+        if (req.query.term) {
+            term = req.query.term;
+        }
+        try {
+            const response = await client.search({ 
+                term: term, 
+                location: req.query.location 
+            });
             return await res.send(response.jsonBody);
         } catch (error) {
             console.log(error);

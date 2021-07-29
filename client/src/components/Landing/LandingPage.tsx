@@ -1,11 +1,13 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from './SearchBar/SearchBar';
 import HotAndNew from './HotAndNew/HotAndNew';
 import Categories from './Categories/Categories';
+import { getIP } from '../utilities/ip';
 import '../../styles/LandingPage.css';
 import yeldData from '../../data/yeldData';
 
 const LandingPage = () => {
+  const [userLocation, setUserLocation] = useState('');
   const logoUrl = yeldData.landingPage.logoUrl;
   const { landingPage: { bannerData } } = yeldData;
   const randomIdx = Math.floor(Math.random() * 8);
@@ -13,6 +15,15 @@ const LandingPage = () => {
   const bannerId = bannerSelection.id;
   const randomBannerUrl = `${bannerData.bannerBaseUrl}${bannerId}${bannerData.bannerExtension}`;
 
+
+  useEffect(() => {
+    getIP()
+      .then(res => {
+        if (typeof res === 'object' && res !== null) {
+          setUserLocation(`${res.city}, ${res.state}`);
+        }
+      })
+  }, []);
 
   return (
     <div className="LandingPage" style={{ backgroundImage: `url(${randomBannerUrl})` }}>
@@ -23,7 +34,7 @@ const LandingPage = () => {
             </h1>
           </div>
           <div className="LandingPage__search">
-            <SearchBar />
+            <SearchBar userLocation={ userLocation } />
           </div>
           <div className="LandingPage__banner-info-container">
             <div className="LandingPage__banner-info">
