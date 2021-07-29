@@ -16,7 +16,7 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
   const [suggestions, setSuggestions] = useState(searchBar.initialSuggestions);
   const classes = useStyles();
 
-
+  // Redirect to the results page when the user hits enter
   const handleEnter = async (key: string) => {
     if (key === 'Enter') {
       const termParam = term !== '' ? `&term=${term}` : '';
@@ -28,6 +28,7 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
     }
   }
 
+  // Redirect to results page when a term selection is made from the search field
   const handleTermSelection = (termStr: string | null) => {
     if (termStr !== null) {
       if (location !== '') {
@@ -38,6 +39,7 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
     }
   }
 
+  // Redirect to results page when a location selection is made from the search field
   const handleLocationSelection = (loc: string | null) => {
     if (loc === searchBar.locationCurrentText && term !== '') {
       history.push(`/search?location=${userLocation}&term=${term}`);
@@ -46,11 +48,13 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
     }
   }
   
-
+  // Load up the city location of the user when the IP is fetched initially
   useEffect(() => {
     setLocation(userLocation);
   }, [userLocation]);
 
+
+  // Account for fast user typing to delay too many fetches
   useEffect(()=> {
     const termTimer = setTimeout(() => {
       if (term !== '') {

@@ -19,7 +19,7 @@ const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) 
   const [loadResults, setLoadResults] = useState(true);
   const [results, setResults] = useState<ResultType[]>([]);
 
-
+  // Get user's location and store it
   useEffect(() => {
     getIP()
       .then(res => {
@@ -34,6 +34,7 @@ const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) 
     }
   }, []);
 
+  // Load up the business results from the last redirect through the params
   useEffect(() => {
     if (location !== '') {
       getBusinesses(location, term)
@@ -45,6 +46,7 @@ const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) 
     }
   }, [location, term]);
 
+  // Load flag variable to control fetching new results for businesses
   useEffect(() => {
     if (loadResults) {
       setLoadResults(false);

@@ -8,12 +8,14 @@ const LandingPage = () => {
   const [userLocation, setUserLocation] = useState('');
   const logoUrl = yeldData.landingPage.logoUrl;
   const { landingPage: { bannerData } } = yeldData;
+
+  // Switch banners randomly on each window reload
   const randomIdx = Math.floor(Math.random() * 8);
   const bannerSelection = bannerData.banners[randomIdx];
   const bannerId = bannerSelection.id;
   const randomBannerUrl = `${bannerData.bannerBaseUrl}${bannerId}${bannerData.bannerExtension}`;
 
-
+  // Get user's location and store it
   useEffect(() => {
     getIP()
       .then(res => {

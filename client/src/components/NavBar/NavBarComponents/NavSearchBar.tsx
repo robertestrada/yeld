@@ -32,7 +32,7 @@ const NavSearchBar = (
   const { landingPage: { searchBar } } = yeldData;
   const [suggestions, setSuggestions] = useState(searchBar.initialSuggestions);
   
-
+  // Load new resutls on enter
   const handleEnter = async (key: string) => {
     if (key === 'Enter') {
       const termParam = searchTerm !== '' ? `&term=${searchTerm}` : '';
@@ -46,6 +46,7 @@ const NavSearchBar = (
     }
   }
 
+  // Load new results on submit click
   const handleClick = async () => {
     const termParam = searchTerm !== '' ? `&term=${searchTerm}` : '';
     if (searchLocation !== '') {
@@ -57,6 +58,7 @@ const NavSearchBar = (
     }
   }
 
+  // Load new results on term click
   const handleTermSelection = (termStr: string | null) => {
     if (termStr !== null) {
       if (searchLocation !== '') {
@@ -69,6 +71,7 @@ const NavSearchBar = (
     }
   }
 
+  // Load new results on location click
   const handleLocationSelection = (loc: string | null) => {
     if (loc === searchBar.locationCurrentText && searchTerm !== '') {
       history.push(`/search?location=${userLocation}&term=${searchTerm}`);
@@ -78,6 +81,7 @@ const NavSearchBar = (
     }
   }
 
+
   useEffect(() => {
     setSearchTerm(term);
   }, [term]);
@@ -86,6 +90,7 @@ const NavSearchBar = (
     setSearchLocation(location);
   }, [location]);
 
+  // Account for fast typers with delayed fetching
   useEffect(() => {
     const termTimer = setTimeout(() => {
       if (searchTerm !== '') {
