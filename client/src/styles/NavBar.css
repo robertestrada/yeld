@@ -1,0 +1,34 @@
+.NavBar {
+  height: 100px;
+  position: sticky;
+  top: 0;
+  /* z-index: 1000; */
+}
+
+.NavBar__header {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+.NavBar__logo {
+  width: 100px;
+  height: 50px;
+  background-size: 100px 50px;
+  margin-right: 60px;
+  background-repeat: no-repeat;
+}
+
+.NavBar__logo a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-indent: -1000em;
+}
