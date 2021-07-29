@@ -19,10 +19,19 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
     }
   }
 
+  // const handleTermSelection = (termStr: string) => {
+  //   if (loc === searchBar.locationCurrentText && term !== '') {
+  //     setLocation(userLocation);
+  //     history.push('/search');
+  //   } else if (loc === searchBar.locationCurrentText) {
+  //     setLocation(userLocation);
+  //   }
+  // }
+
   const handleLocationSelection = (loc: string | null) => {
     if (loc === searchBar.locationCurrentText && term !== '') {
       setLocation(userLocation);
-      history.push('/search');
+      history.push(`/search?location=${userLocation}&term=${term}`);
     } else if (loc === searchBar.locationCurrentText) {
       setLocation(userLocation);
     }
@@ -64,7 +73,7 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
         style={{ borderRight: "1px  solid #ddd", marginRight: "10px" }}
         fullWidth={true}
         onInputChange={(e, value) => setTerm(value)}
-        // onChange={onTermChange}
+        // onChange={() => }
         renderInput={(params) => <TextField 
           {...params} 
           onKeyDown={e => handleEnter(e.key)}
