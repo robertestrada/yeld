@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import AutoComplete from '@material-ui/lab/Autocomplete/Autocomplete';
 import TextField from '@material-ui/core/TextField/TextField';
 import yeldData from '../../../data/yeldData';
@@ -6,6 +7,7 @@ import { getAutoSuggestions, getBusinesses } from '../../utilities/yelpAPI';
 import '../../../styles/SearchBar.css';
 
 const SearchBar = ({ userLocation }: { userLocation: string }) => {
+  const history = useHistory();
   const { landingPage: { searchBar } } = yeldData;
   const [term, setTerm] = useState('');
   const [location, setLocation] = useState('');
@@ -14,13 +16,14 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
   const handleEnter = async (key: string) => {
     if (key === 'Enter') {
       const result = await getBusinesses(location, term);
-      console.log(result);
     }
   }
 
   const handleLocationSelection = (loc: string | null) => {
-    console.log(loc);
-    if (loc === searchBar.locationCurrentText) {
+    if (loc === searchBar.locationCurrentText && term !== '') {
+      setLocation(userLocation);
+      history.push('/search');
+    } else if (loc === searchBar.locationCurrentText) {
       setLocation(userLocation);
     }
   }
