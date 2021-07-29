@@ -4,9 +4,17 @@ import '../../styles/NavBar.css';
 import yeldData from '../../data/yeldData';
 
 
-const NavBar = (props: { location: string, setLocation: Dispatch<SetStateAction<string>>, term: string, setTerm: Dispatch<SetStateAction<string>>, userLocation: string }) => {
+const NavBar = (props: { 
+  location: string, 
+  term: string, 
+  userLocation: string,
+  searchLocation: string,
+  setSearchLocation: Dispatch<SetStateAction<string>>
+  searchTerm: string,
+  setSearchTerm: Dispatch<SetStateAction<string>>,
+  setLoadResults: Dispatch<SetStateAction<boolean>>,
+  }) => {
   const logoUrl = yeldData.landingPage.logoUrl;
-  
   
   return (
     <div className="NavBar">

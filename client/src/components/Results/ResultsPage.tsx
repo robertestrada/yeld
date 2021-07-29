@@ -13,6 +13,9 @@ const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) 
   const [userLocation, setUserLocation] = useState('');
   const [location, setLocation] = useState('');
   const [term, setTerm] = useState('');
+  const [searchLocation, setSearchLocation] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [loadResults, setLoadResults] = useState(true);
   const [results, setResults] = useState<ResultType[]>([]);
 
 
@@ -41,10 +44,32 @@ const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) 
     }
   }, [location, term]);
 
+  useEffect(() => {
+    console.log("loadResults: ", loadResults);
+    if (loadResults) {
+      setLoadResults(false);
+      getBusinesses(searchLocation, searchTerm)
+      .then(res => {
+        if (Array.isArray(res)) {
+          setResults(res);
+        }
+      })
+    }
+  }, [loadResults]);
+
 
   return (
     <div className="ResultsPage">
-      <NavBar location={location} setLocation={setLocation} term={term} setTerm={setTerm} userLocation={userLocation} />
+      <NavBar 
+        location={location} 
+        term={term} 
+        userLocation={userLocation} 
+        searchLocation={searchLocation}
+        setSearchLocation={setSearchLocation}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        setLoadResults={setLoadResults}
+      />
       <Results results={results} />
     </div>
   )

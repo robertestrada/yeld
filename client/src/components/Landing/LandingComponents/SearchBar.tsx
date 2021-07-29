@@ -30,7 +30,11 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
 
   const handleTermSelection = (termStr: string | null) => {
     if (termStr !== null) {
-      history.push(`/search?location=${location}&term=${termStr}`);
+      if (location !== '') {
+        history.push(`/search?location=${location}&term=${termStr}`);
+      } else {
+        history.push(`/search?location=${userLocation}&term=${termStr}`);
+      }
     }
   }
 
