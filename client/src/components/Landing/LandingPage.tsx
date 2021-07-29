@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import SearchBar from './SearchBar/SearchBar';
 import HotAndNew from './HotAndNew/HotAndNew';
 import Categories from './Categories/Categories';

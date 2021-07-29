@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import AutoComplete from '@material-ui/lab/Autocomplete/Autocomplete';
 import TextField from '@material-ui/core/TextField/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 import yeldData from '../../../data/yeldData';
 import { getAutoSuggestions, getBusinesses } from '../../utilities/yelpAPI';
 import '../../../styles/SearchBar.css';
+
+const useStyles = makeStyles({
+  paper: {
+    transform: 'translateY(-4px)',
+    borderTopLeftRadius: '0px',
+    borderTopRightRadius: '0px',
+    width: "100%",
+  }
+});
 
 const SearchBar = ({ userLocation }: { userLocation: string }) => {
   const history = useHistory();
@@ -12,25 +22,23 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
   const [term, setTerm] = useState('');
   const [location, setLocation] = useState('');
   const [suggestions, setSuggestions] = useState(searchBar.initialSuggestions);
-  
+  const classes = useStyles();
+
+
   const handleEnter = async (key: string) => {
     if (key === 'Enter') {
       const result = await getBusinesses(location, term);
     }
   }
 
-  // const handleTermSelection = (termStr: string) => {
-  //   if (loc === searchBar.locationCurrentText && term !== '') {
-  //     setLocation(userLocation);
-  //     history.push('/search');
-  //   } else if (loc === searchBar.locationCurrentText) {
-  //     setLocation(userLocation);
-  //   }
-  // }
+  const handleTermSelection = (termStr: string | null) => {
+    if (termStr !== null) {
+      history.push(`/search?location=${location}&term=${termStr}`);
+    }
+  }
 
   const handleLocationSelection = (loc: string | null) => {
     if (loc === searchBar.locationCurrentText && term !== '') {
-      setLocation(userLocation);
       history.push(`/search?location=${userLocation}&term=${term}`);
     } else if (loc === searchBar.locationCurrentText) {
       setLocation(userLocation);
@@ -57,13 +65,13 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
     return () => clearTimeout(termTimer);
   },[term]);
 
-  console.log("term: ", term);
-  console.log("location: ", location);
-  console.log("suggestions: ", suggestions);
+
   return (
     <div className="SearchBar">
       <AutoComplete
         id='term-field'
+        ListboxProps={{ style: { maxHeight: '900px' }}}
+        classes={{ paper: classes.paper }}
         filterOptions={(options, state) => options}
         options={suggestions}
         freeSolo={true}
@@ -73,7 +81,7 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
         style={{ borderRight: "1px  solid #ddd", marginRight: "10px" }}
         fullWidth={true}
         onInputChange={(e, value) => setTerm(value)}
-        // onChange={() => }
+        onChange={(e, value) => handleTermSelection(value)}
         renderInput={(params) => <TextField 
           {...params} 
           onKeyDown={e => handleEnter(e.key)}
@@ -84,6 +92,8 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
       />
       <AutoComplete
         id='location-field'
+        ListboxProps={{style: { maxHeight: '900px'}}}
+        classes={{ paper: classes.paper }}
         value={location}
         filterOptions={(options, state) => options}
         options={[searchBar.locationCurrentText]}

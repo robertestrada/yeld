@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LandingPage from './components/Landing/LandingPage';
 import ResultsPage from './components/Results/ResultsPage';
