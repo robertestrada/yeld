@@ -11,10 +11,14 @@ const NavBar = (props: { location: string, setLocation: Dispatch<SetStateAction<
   return (
     <div className="NavBar">
       <div className="NavBar__header">
-        <h1 className="NavBar__logo" style={{ backgroundImage: `url(${logoUrl})` }}>
-          <a href="/">Yeld</a>
-        </h1>
-        <NavSearchBar {...props} />
+        <div className="NavBar__logo-container">
+          <h1 className="NavBar__logo" style={{ backgroundImage: `url(${logoUrl})` }}>
+            <a href="/">Yeld</a>
+          </h1>
+        </div>
+        <div className="NavBar__search">
+          <NavSearchBar {...props} />
+        </div>
       </div>
     </div>)
 }

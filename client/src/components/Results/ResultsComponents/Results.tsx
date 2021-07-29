@@ -1,5 +1,6 @@
 // import { useState, useEffect } from 'react';
 import { ResultType } from 'myTypes';
+import '../../../styles/Results.css';
 
 
 const Results = ({ results }: { results: ResultType[] }) => {

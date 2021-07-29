@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import queryString from 'query-string';
-import { getAutoSuggestions, getBusinesses } from '../../utilities/yelpAPI';
+import { getBusinesses } from '../../utilities/yelpAPI';
 import Results from './ResultsComponents/Results'
 import NavBar from '../NavBar/Navbar';
 import { getIP } from '../../utilities/ip';

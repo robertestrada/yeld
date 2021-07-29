@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
   paper: {
@@ -8,3 +8,11 @@ export const useStyles = makeStyles({
     width: "100%",
   }
 });
+
+export const useStylesButton = makeStyles((theme: Theme) =>
+  createStyles({
+    button: {
+      margin: theme.spacing(0),
+    },
+  }),
+);

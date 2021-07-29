@@ -4,7 +4,7 @@ import AutoComplete from '@material-ui/lab/Autocomplete/Autocomplete';
 import TextField from '@material-ui/core/TextField/TextField';
 import { useStyles } from '../../../utilities/materialUI';
 import yeldData from '../../../data/yeldData';
-import { getAutoSuggestions, getBusinesses } from '../../../utilities/yelpAPI';
+import { getAutoSuggestions } from '../../../utilities/yelpAPI';
 import '../../../styles/SearchBar.css';
 
 
@@ -41,6 +41,7 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
       setLocation(userLocation);
     }
   }
+  
 
   useEffect(() => {
     setLocation(userLocation);
