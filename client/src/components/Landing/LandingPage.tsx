@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import SearchBar from './SearchBar/SearchBar';
-import HotAndNew from './HotAndNew/HotAndNew';
-import Categories from './Categories/Categories';
-import { getIP } from '../utilities/ip';
+import SearchBar from './LandingComponents/SearchBar';
+import HotAndNew from './LandingComponents/HotAndNew';
+import Categories from './LandingComponents/Categories';
+import { getIP } from '../../utilities/ip';
 import '../../styles/LandingPage.css';
 import yeldData from '../../data/yeldData';
 

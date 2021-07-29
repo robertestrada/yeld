@@ -4,7 +4,7 @@ import AutoComplete from '@material-ui/lab/Autocomplete/Autocomplete';
 import TextField from '@material-ui/core/TextField/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import yeldData from '../../../data/yeldData';
-import { getAutoSuggestions, getBusinesses } from '../../utilities/yelpAPI';
+import { getAutoSuggestions, getBusinesses } from '../../../utilities/yelpAPI';
 import '../../../styles/SearchBar.css';
 
 const useStyles = makeStyles({
