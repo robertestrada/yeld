@@ -1,16 +1,14 @@
 // import { useState, useEffect } from 'react';
-interface Result {
-  name: string;
-}
+import { ResultType } from 'myTypes';
 
 
-const Results = ({ results }: { results: Result[] }) => {
+const Results = ({ results }: { results: ResultType[] }) => {
   console.log(results);
   return (
     <div className="Results">
       Results
       { results !== [] 
-      ? results.map((result: Result, idx: number) => <div key={idx}>{result.name}</div>)
+      ? results.map((result: ResultType, idx: number) => <div key={idx}>{result.name}</div>)
       : null
       }
     </div>

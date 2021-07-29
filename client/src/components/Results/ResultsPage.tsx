@@ -5,23 +5,15 @@ import { getAutoSuggestions, getBusinesses } from '../../utilities/yelpAPI';
 import Results from './ResultsComponents/Results'
 import NavBar from '../NavBar/Navbar';
 import { getIP } from '../../utilities/ip';
+import { ResultType, TParams } from 'myTypes';
 
-
-type TParams = { 
-  location: string;
-}
-
-interface Result {
-  name: string;
-}
 
 const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) => {
   const query = queryString.parse(paramLocation.search);
-  
   const [userLocation, setUserLocation] = useState('');
   const [location, setLocation] = useState('');
   const [term, setTerm] = useState('');
-  const [results, setResults] = useState<Result[]>([]);
+  const [results, setResults] = useState<ResultType[]>([]);
 
 
   useEffect(() => {
@@ -31,19 +23,23 @@ const ResultsPage = ({ location: paramLocation }: RouteComponentProps<TParams>) 
           setUserLocation(`${res.city}, ${res.state}`);
         }
       })
+      
+    if (typeof query.location === 'string' && typeof query.term === 'string') {
+      setLocation(query.location);
+      setTerm(query.term);
+    }
   }, []);
 
   useEffect(() => {
-    if (userLocation !== '') {
-      setLocation(userLocation);
-      getBusinesses(userLocation, term)
+    if (location !== '') {
+      getBusinesses(location, term)
       .then(res => {
         if (Array.isArray(res)) {
           setResults(res);
         }
       })
     }
-  }, [userLocation]);
+  }, [location, term]);
 
 
   return (
