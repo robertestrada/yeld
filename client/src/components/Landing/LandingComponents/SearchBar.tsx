@@ -2,19 +2,11 @@ import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import AutoComplete from '@material-ui/lab/Autocomplete/Autocomplete';
 import TextField from '@material-ui/core/TextField/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import { useStyles } from '../../../utilities/materialUI';
 import yeldData from '../../../data/yeldData';
 import { getAutoSuggestions, getBusinesses } from '../../../utilities/yelpAPI';
 import '../../../styles/SearchBar.css';
 
-const useStyles = makeStyles({
-  paper: {
-    transform: 'translateY(-4px)',
-    borderTopLeftRadius: '0px',
-    borderTopRightRadius: '0px',
-    width: "100%",
-  }
-});
 
 const SearchBar = ({ userLocation }: { userLocation: string }) => {
   const history = useHistory();
@@ -27,7 +19,12 @@ const SearchBar = ({ userLocation }: { userLocation: string }) => {
 
   const handleEnter = async (key: string) => {
     if (key === 'Enter') {
-      const result = await getBusinesses(location, term);
+      const termParam = term !== '' ? `&term=${term}` : '';
+      if (location !== '') {
+        history.push(`/search?location=${location}${termParam}`);
+      } else {
+        history.push(`/search?location=${userLocation}${termParam}`);
+      }
     }
   }
 
